@@ -1,23 +1,24 @@
-body>div {
-	padding: 0 25px;
-	vertical-align: top;
-	display: inline-block;
-}
-#space {
-	width: 699px;
-	height: 699px;
+label {width: 100%;}
+#space-2d {
 	position: absolute;
-	background-color: gray;
+	border: 1px brown solid;
+	background-color: lightgray;
+	margin: 10px; padding: 0;
 }
+.controls input {margin-top: 5px;}
+
 .object-point {
 	opacity: 0.5;
-	border-radius: 99px;
-	border: 1px white solid;
-	background-color: lightgray;
-	display: inline-block;
 	position: absolute;
-}
+	display: inline-block;
+	border: 1px white solid;
+	background-color: gray;
+	margin: 0; padding: 0;
 
+	width: 17px;
+	height: 17px;
+	border-radius: 7px;
+}
 .object-point.mark {
 	border-color: black;
 	background-color: green;

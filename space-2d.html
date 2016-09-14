@@ -1,83 +1,59 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html lang="en" class="ie8"><![endif]-->
-<!--[if !IE]>--><html lang="en"><!--<![endif]-->
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<title>Space 2D</title>
-	<!-- link type="image/x-icon" href="./space-2d-icon.ico" rel="shortcut icon" / -->
-	<!-- link type="image/x-icon" href="./space-2d-icon.ico" rel="icon" / -->
-	<!-- link rel="stylesheet" href="./space-2d.css" / -->
+	<!-- link href="./space-2d.ico" type="image/x-icon" rel="shortcut icon" / -->
+	<!-- link href="./space-2d.ico" type="image/x-icon" rel="icon" / -->
+	<link href="./plugins/jquery/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="./plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="./plugins/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="./space-2d.css" rel="stylesheet" />
 
-	<!-- meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" / -->
-
-	<script src="./jquery-1.11.3.min.js"></script>
-	<script src="./jquery-ui-1.11.4.min.js"></script>
-	<script src="./space-2d.v2.js"></script>
-	<style type="text/css">
-body>div {
-	padding: 0 25px;
-	vertical-align: top;
-	display: inline-block;
-}
-#space {
-	position: absolute;
-	border: 1px red solid;
-	background-color: lightgray;
-}
-.object-point {
-	opacity: 0.5;
-	border-radius: 99px;
-	border: 1px white solid;
-	background-color: gray;
-	display: inline-block;
-	position: absolute;
-}
-
-.object-point.mark {
-	border-color: black;
-	background-color: green;
-}
-.object-point.active {
-	background-color: orange;
-}
-	</style>
+	<script src="./plugins/jquery/js/jquery.min.js"></script>
+	<script src="./plugins/jquery/js/jquery-ui.min.js"></script>
+	<script src="./plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./space-2d.js"></script>
 </head>
 
 <body>
-	<div>
-		<div>
-			<h2>Settings:</h2>
-			<label>Константа г-поле: <input type="text" id="G" value="10" /></label><br>
-			<label>Константа ч-дыра: <input type="text" id="BH" value="0" /></label><br>
-			<label>Скорость обновления: <input type="text" id="speed" value="250" /></label><br>
-			<label>Округлять до пикселей: <input type="checkbox" id="round" checked /></label><br>
-
-			<br>
-			<label>Масса пустых объектов: <input type="text" id="mass" value="9" /></label><br>
-			<label>Попрвака, количество попыток: <input type="text" id="fix-cnt" value="7" /></label><br>
-			<label>Попрвака, множитель для <em>random</em>: <input type="text" id="fix-rndm" value="3" /></label><br>
-			<br><input type="button" id="correct-1" value="Применить к пространству" />
+	<div class="">
+		<div class="row">
+			<h2 class="col-sm-12">Universe</h2>
+			<div class="col-sm-4 col-md-3">
+				<h3>Space</h3>
+				<label><input type="checkbox" id="cnst-push" checked />&nbsp;Использовать модель отталкивания</label>
+				<label>Коэффициент, г-поле: <input type="text" id="cnst-gravity" class="form-control" value="35" /></label>
+				<label>Фокусировка, ч-дыра: <input type="text" id="cnst-bhole" class="form-control" value="7" /></label>
+				<label>Масса объектов по умолчанию: <input type="text" id="def-mass" class="form-control" value="9" /></label>
+				<label><input type="checkbox" id="fix-round" checked />&nbsp;Попрвака, округлять до пикселей</label>
+				<label>Попрвака, количество попыток: <input type="text" id="fix-cnt" class="form-control" value="5" /></label>
+				<label>Попрвака, множитель для <i>random</i>: <input type="text" id="fix-rndm" class="form-control" value="3" /></label>
+				<input type="button" id="correct-1" class="btn btn-info" value="Применить к пространству" />
+			</div>
+			<div class="col-sm-4 col-md-3">
+				<h3>Object</h3>
+				<label>ID объекта: <input type="text" id="obj-id" class="form-control" /></label>
+				<label>Масса объекта: <input type="text" id="mass" class="form-control" disabled /></label>
+				<label>Коордиката <i>X</i>: <input type="text" id="force-x" class="form-control" disabled /></label>
+				<label>Коордиката <i>Y</i>: <input type="text" id="force-y" class="form-control" disabled /></label>
+				<p><input type="button" id="correct-2" class="btn btn-info" value="Применить к объекту" /></p>
+			</div>
+			<div class="col-sm-4 col-lg-3">
+				<h3>Main</h3>
+				<label>Радиус пространства: <input type="text" id="radius" class="form-control" value="300" /></label>
+				<label>Скорость обновления: <input type="text" id="speed" class="form-control" value="300" /></label>
+				<label>Количество объектов: <input type="text" id="objs" class="form-control" value="300" /></label>
+				<div class="controls">
+					<input type="button" id="reset" class="btn btn-danger" value="Сбросить" />
+					<input type="button" id="stop" class="btn btn-warning" value="Остановить" />
+					<input type="button" id="run" class="btn btn-success" value="Запустить" />
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-8">
+				<div id="space-2d"></div>
+			</div>
 		</div>
-		<div>
-			<h2>Object:</h2>
-			<label>ID объекта: <input type="text" id="obj-id" /></label><br>
-			<label>Масса объекта: <input type="text" id="obj-M" disabled /></label><br>
-			<label>Коордиката X: <input type="text" id="obj-X" disabled /></label><br>
-			<label>Коордиката Y: <input type="text" id="obj-Y" disabled /></label><br>
-			<label>Сила X: <input type="text" id="obj-forceX" disabled /></label><br>
-			<label>Сила Y: <input type="text" id="obj-forceY" disabled /></label><br>
-			<br><input type="button" id="correct-2" value="Применить к объекту" />
-		</div>
-	</div>
-	<div>
-		<h2>Space:</h2>
-		<label>Радиус пространства: <input type="text" id="radius" value="100" /></label><br>
-		<label>Количество объектов: <input type="text" id="obj-cnt" value="25" /></label><br>
-
-		<br>
-		<input type="button" id="reset" value="Сбросить" />
-		<input type="button" id="play" value="Запустить" />
-		<br><br><div id="space"></div>
 	</div>
 </body>
 </html>
