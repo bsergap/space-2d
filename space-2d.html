@@ -12,7 +12,7 @@
 
 	<script src="./jquery-1.11.3.min.js"></script>
 	<script src="./jquery-ui-1.11.4.min.js"></script>
-	<script src="./space-2d.v1.js"></script>
+	<script src="./space-2d.v2.js"></script>
 	<style type="text/css">
 body>div {
 	padding: 0 25px;
@@ -47,37 +47,36 @@ body>div {
 	<div>
 		<div>
 			<h2>Settings:</h2>
-			<label>Константа г-поле: <input type="text" id="gravity" value="10" /></label><br>
-			<!-- label>Константа ч-дыра: <input type="text" id="BH" value="0" /></label><br -->
+			<label>Константа г-поле: <input type="text" id="G" value="10" /></label><br>
+			<label>Константа ч-дыра: <input type="text" id="BH" value="0" /></label><br>
 			<label>Скорость обновления: <input type="text" id="speed" value="250" /></label><br>
 			<label>Округлять до пикселей: <input type="checkbox" id="round" checked /></label><br>
 
 			<br>
-			<label>Масса пустых объектов: <input type="text" id="mass2" value="9" /></label><br>
-			<label>Попрвака, количество попыток: <input type="text" id="fix_cnt" value="7" /></label><br>
-			<label>Попрвака, множитель для <em>random</em>: <input type="text" id="fix_rndm" value="3" /></label><br>
+			<label>Масса пустых объектов: <input type="text" id="mass" value="9" /></label><br>
+			<label>Попрвака, количество попыток: <input type="text" id="fix-cnt" value="7" /></label><br>
+			<label>Попрвака, множитель для <em>random</em>: <input type="text" id="fix-rndm" value="3" /></label><br>
 			<br><input type="button" id="correct-1" value="Применить к пространству" />
 		</div>
 		<div>
 			<h2>Object:</h2>
 			<label>ID объекта: <input type="text" id="obj-id" /></label><br>
-			<label>Масса объекта: <input type="text" id="mass" disabled /></label><br>
-			<label>Коордиката X: <input type="text" id="posX" disabled /></label><br>
-			<label>Сила X: <input type="text" id="forceX" disabled /></label><br>
-			<label>Коордиката Y: <input type="text" id="posY" disabled /></label><br>
-			<label>Сила Y: <input type="text" id="forceY" disabled /></label><br>
+			<label>Масса объекта: <input type="text" id="obj-M" disabled /></label><br>
+			<label>Коордиката X: <input type="text" id="obj-X" disabled /></label><br>
+			<label>Коордиката Y: <input type="text" id="obj-Y" disabled /></label><br>
+			<label>Сила X: <input type="text" id="obj-forceX" disabled /></label><br>
+			<label>Сила Y: <input type="text" id="obj-forceY" disabled /></label><br>
 			<br><input type="button" id="correct-2" value="Применить к объекту" />
 		</div>
 	</div>
 	<div>
 		<h2>Space:</h2>
 		<label>Радиус пространства: <input type="text" id="radius" value="100" /></label><br>
-		<label>Количество объектов: <input type="text" id="objs" value="25" /></label><br>
+		<label>Количество объектов: <input type="text" id="obj-cnt" value="25" /></label><br>
 
 		<br>
 		<input type="button" id="reset" value="Сбросить" />
-		<input type="button" id="stop" value="Остановить" />
-		<input type="button" id="run" value="Запустить" />
+		<input type="button" id="play" value="Запустить" />
 		<br><br><div id="space"></div>
 	</div>
 </body>
