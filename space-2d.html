@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html lang="en" class="ie8"><![endif]-->
+<!--[if !IE]>--><html lang="en"><!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Space 2D</title>
+	<!-- link type="image/x-icon" href="./space-2d-icon.ico" rel="shortcut icon" / -->
+	<!-- link type="image/x-icon" href="./space-2d-icon.ico" rel="icon" / -->
+	<!-- link rel="stylesheet" href="./space-2d.css" / -->
+
+	<!-- meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" / -->
+
+	<script src="./jquery-1.11.3.min.js"></script>
+	<script src="./jquery-ui-1.11.4.min.js"></script>
+	<script src="./space-2d.v1.js"></script>
+	<style type="text/css">
+body>div {
+	padding: 0 25px;
+	vertical-align: top;
+	display: inline-block;
+}
+#space {
+	position: absolute;
+	border: 1px red solid;
+	background-color: lightgray;
+}
+.object-point {
+	opacity: 0.5;
+	border-radius: 99px;
+	border: 1px white solid;
+	background-color: gray;
+	display: inline-block;
+	position: absolute;
+}
+
+.object-point.mark {
+	border-color: black;
+	background-color: green;
+}
+.object-point.active {
+	background-color: orange;
+}
+	</style>
+</head>
+
+<body>
+	<div>
+		<div>
+			<h2>Settings:</h2>
+			<label>Константа г-поле: <input type="text" id="gravity" value="10" /></label><br>
+			<!-- label>Константа ч-дыра: <input type="text" id="BH" value="0" /></label><br -->
+			<label>Скорость обновления: <input type="text" id="speed" value="250" /></label><br>
+			<label>Округлять до пикселей: <input type="checkbox" id="round" checked /></label><br>
+
+			<br>
+			<label>Масса пустых объектов: <input type="text" id="mass2" value="9" /></label><br>
+			<label>Попрвака, количество попыток: <input type="text" id="fix_cnt" value="7" /></label><br>
+			<label>Попрвака, множитель для <em>random</em>: <input type="text" id="fix_rndm" value="3" /></label><br>
+			<br><input type="button" id="correct-1" value="Применить к пространству" />
+		</div>
+		<div>
+			<h2>Object:</h2>
+			<label>ID объекта: <input type="text" id="obj-id" /></label><br>
+			<label>Масса объекта: <input type="text" id="mass" disabled /></label><br>
+			<label>Коордиката X: <input type="text" id="posX" disabled /></label><br>
+			<label>Сила X: <input type="text" id="forceX" disabled /></label><br>
+			<label>Коордиката Y: <input type="text" id="posY" disabled /></label><br>
+			<label>Сила Y: <input type="text" id="forceY" disabled /></label><br>
+			<br><input type="button" id="correct-2" value="Применить к объекту" />
+		</div>
+	</div>
+	<div>
+		<h2>Space:</h2>
+		<label>Радиус пространства: <input type="text" id="radius" value="100" /></label><br>
+		<label>Количество объектов: <input type="text" id="objs" value="25" /></label><br>
+
+		<br>
+		<input type="button" id="reset" value="Сбросить" />
+		<input type="button" id="stop" value="Остановить" />
+		<input type="button" id="run" value="Запустить" />
+		<br><br><div id="space"></div>
+	</div>
+</body>
+</html>

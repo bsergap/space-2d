@@ -1,0 +1,28 @@
+body>div {
+	padding: 0 25px;
+	vertical-align: top;
+	display: inline-block;
+}
+#space {
+	width: 699px;
+	height: 699px;
+	position: absolute;
+	background-color: gray;
+}
+.object-point {
+	opacity: 0.5;
+	border-radius: 99px;
+	border: 1px white solid;
+	background-color: lightgray;
+	display: inline-block;
+	position: absolute;
+}
+
+.object-point.mark {
+	border-color: black;
+	background-color: green;
+}
+.object-point.active {
+	border-color: red;
+	background-color: orange;
+}
