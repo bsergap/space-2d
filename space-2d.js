@@ -7,7 +7,8 @@
 var space_2d = {
 	radius: 300, speed: 300,
 	cnsts: {
-		G: 35, GF: 7, push: true,
+		G: 35, GF: 8.7,
+		push: true, inertia: false,
 		fix: {cnt: 5, rndm: 3, round: true}
 	},
 	xy: [
@@ -21,7 +22,7 @@ var space_2d = {
 		[-1, -1]
 	], //(Math.random() *8)^0
 	objects: [], obj_proto: {
-		X: 0, Y: 0, M: 9,
+		X: 0, Y: 0, M: 7,
 		getM: function() {
 			return this.M;
 		},
@@ -86,8 +87,10 @@ var space_2d = {
 				this.X = this.force.X;
 				this.Y = this.force.Y;
 			}
-			this.force.X += delta_force.X;
-			this.force.Y += delta_force.Y;
+			if(space.cnsts.inertia) {
+				this.force.X += delta_force.X;
+				this.force.Y += delta_force.Y;
+			}
 			this.$.offset({
 				left: space.$.offset().left +space.radius +this.X -this.M,
 				top:  space.$.offset().top  +space.radius +this.Y -this.M
@@ -228,6 +231,7 @@ var space_2d = {
 			space_2d.cnsts.G = parseInt($('#cnst-gravity').val());
 			space_2d.cnsts.GF = parseFloat($('#cnst-bhole').val());
 			space_2d.cnsts.push = $('#cnst-push').prop('checked');
+			space_2d.cnsts.inertia = $('#cnst-inertia').prop('checked');
 			space_2d.obj_proto.setM(parseInt($('#def-mass').val()));
 
 			space_2d.cnsts.fix.cnt = parseInt($('#fix-cnt').val());
